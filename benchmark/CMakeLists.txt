@@ -6,7 +6,7 @@ project(
     benchmark
     VERSION 0.1.0
     DESCRIPTION "benchmark for testing code"
-    HOMEPAGE_URL "https://example.com/"
+    HOMEPAGE_URL "https://github.com/vsdmars/cpp_benchmark/"
     LANGUAGES CXX
 )
 
