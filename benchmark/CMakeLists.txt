@@ -1,4 +1,11 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.23)
+
+# enable unit test
+# https://stackoverflow.com/a/30264765
+enable_testing()
+
+# setup create directories properties
+include(cmake/create_dir.cmake)
 
 include(cmake/prelude.cmake)
 
@@ -16,32 +23,26 @@ include(cmake/variables.cmake)
 # ---- Declare library ----
 
 add_library(
-    benchmark_lib OBJECT
-    source/lib.cpp
-)
-
-target_include_directories(
-    benchmark_lib ${warning_guard}
-    PUBLIC
-    "$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/source>"
+    branchless OBJECT
+    source/branchless.cpp
 )
 
 target_compile_features(benchmark_lib PUBLIC cxx_std_20)
 
 # ---- Declare executable ----
 
-add_executable(benchmark_exe source/main.cpp)
-add_executable(benchmark::exe ALIAS benchmark_exe)
+add_executable(benchmark source/main.cpp)
+add_executable(benchmark::exe ALIAS benchmark)
 
 set_target_properties(
-    benchmark_exe PROPERTIES
+    benchmark PROPERTIES
     OUTPUT_NAME benchmark
     EXPORT_NAME exe
 )
 
-target_compile_features(benchmark_exe PRIVATE cxx_std_20)
+target_compile_features(benchmark PRIVATE cxx_std_20)
 
-target_link_libraries(benchmark_exe PRIVATE benchmark_lib)
+target_link_libraries(benchmark PRIVATE branchless)
 
 # ---- Install rules ----
 

@@ -1,0 +1,10 @@
+/home/files/cpp_project/cpp_benchmark/benchmark/BB/CMakeFiles/benchmark_lib.dir
+/home/files/cpp_project/cpp_benchmark/benchmark/BB/CMakeFiles/benchmark_exe.dir
+/home/files/cpp_project/cpp_benchmark/benchmark/BB/CMakeFiles/package.dir
+/home/files/cpp_project/cpp_benchmark/benchmark/BB/CMakeFiles/package_source.dir
+/home/files/cpp_project/cpp_benchmark/benchmark/BB/CMakeFiles/edit_cache.dir
+/home/files/cpp_project/cpp_benchmark/benchmark/BB/CMakeFiles/rebuild_cache.dir
+/home/files/cpp_project/cpp_benchmark/benchmark/BB/CMakeFiles/list_install_components.dir
+/home/files/cpp_project/cpp_benchmark/benchmark/BB/CMakeFiles/install.dir
+/home/files/cpp_project/cpp_benchmark/benchmark/BB/CMakeFiles/install/local.dir
+/home/files/cpp_project/cpp_benchmark/benchmark/BB/CMakeFiles/install/strip.dir
