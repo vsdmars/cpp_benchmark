@@ -7,10 +7,10 @@ endif()
 
 add_custom_target(
     run-exe
-    COMMAND benchmark_exe
+    COMMAND benchmark
     VERBATIM
 )
-add_dependencies(run-exe benchmark_exe)
+add_dependencies(run-exe benchmark)
 
 option(BUILD_MCSS_DOCS "Build documentation using Doxygen and m.css" OFF)
 if(BUILD_MCSS_DOCS)

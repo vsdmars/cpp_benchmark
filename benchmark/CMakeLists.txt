@@ -1,9 +1,5 @@
 cmake_minimum_required(VERSION 3.23)
 
-# enable unit test
-# https://stackoverflow.com/a/30264765
-enable_testing()
-
 # setup create directories properties
 include(cmake/create_dir.cmake)
 
@@ -17,6 +13,12 @@ project(
     LANGUAGES CXX
 )
 
+find_package(benchmark REQUIRED) # benchmark::benchmark
+
+# enable unit test
+# https://stackoverflow.com/a/30264765
+enable_testing()
+
 include(cmake/project-is-top-level.cmake)
 include(cmake/variables.cmake)
 
@@ -27,7 +29,9 @@ add_library(
     source/branchless.cpp
 )
 
-target_compile_features(benchmark_lib PUBLIC cxx_std_20)
+target_compile_features(branchless PUBLIC cxx_std_20)
+target_link_options(branchless PRIVATE -fno-omit-frame-pointer -fsanitize=address)
+target_compile_options(branchless PRIVATE -fno-omit-frame-pointer -fsanitize=address)
 
 # ---- Declare executable ----
 
@@ -41,8 +45,10 @@ set_target_properties(
 )
 
 target_compile_features(benchmark PRIVATE cxx_std_20)
-
 target_link_libraries(benchmark PRIVATE branchless)
+target_link_libraries(benchmark PRIVATE benchmark::benchmark)
+target_link_options(benchmark PRIVATE -fno-omit-frame-pointer -fsanitize=address)
+target_compile_options(benchmark PRIVATE -fno-omit-frame-pointer -fsanitize=address)
 
 # ---- Install rules ----
 

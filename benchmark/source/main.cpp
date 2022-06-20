@@ -1,12 +1,10 @@
 #include <iostream>
 #include <string>
 
-#include "lib.hpp"
+#include "branchless.h"
 
 auto main() -> int
 {
-  auto const lib = library {};
-  auto const message = "Hello from " + lib.name + "!";
-  std::cout << message << '\n';
+  std::cout << "compiled" << std::endl;
   return 0;
 }

@@ -7,7 +7,6 @@ project(benchmarkTests LANGUAGES CXX)
 # ---- Tests ----
 
 add_executable(benchmark_test source/benchmark_test.cpp)
-target_link_libraries(benchmark_test PRIVATE benchmark_lib)
 target_compile_features(benchmark_test PRIVATE cxx_std_20)
 
 add_test(NAME benchmark_test COMMAND benchmark_test)

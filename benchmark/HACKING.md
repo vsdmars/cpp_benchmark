@@ -125,7 +125,7 @@ fix them respectively. Customization available using the `FORMAT_PATTERNS` and
 
 #### `run-exe`
 
-Runs the executable target `benchmark_exe`.
+Runs the executable target `benchmark`.
 
 #### `spell-check` and `spell-fix`
 

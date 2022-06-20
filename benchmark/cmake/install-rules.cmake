@@ -5,7 +5,7 @@ include(GNUInstallDirs)
 set(package benchmark)
 
 install(
-    TARGETS benchmark_exe
+    TARGETS benchmark
     RUNTIME COMPONENT benchmark_Runtime
 )
 
@@ -29,7 +29,7 @@ install(
 
 # Export variables for the install script to use
 install(CODE "
-set(benchmark_NAME [[$<TARGET_FILE_NAME:benchmark_exe>]])
+set(benchmark_NAME [[$<TARGET_FILE_NAME:benchmark>]])
 set(benchmark_INSTALL_CMAKEDIR [[${benchmark_INSTALL_CMAKEDIR}]])
 set(CMAKE_INSTALL_BINDIR [[${CMAKE_INSTALL_BINDIR}]])
 " COMPONENT benchmark_Development)

@@ -1,4 +1,0 @@
-# ninja log v5
-2	320	1655764583785904049	CMakeFiles/benchmark_lib.dir/source/lib.cpp.o	d6f0b0f77e3b6e96
-2	406	1655764583869903925	CMakeFiles/benchmark_exe.dir/source/main.cpp.o	153189d71207b427
-407	487	1655764583953903801	benchmark	b3b11bc99b842caf
