@@ -20,36 +20,31 @@ enable_testing()
 include(cmake/project-is-top-level.cmake)
 include(cmake/variables.cmake)
 
-# ---- Declare library ----
-
-# add_library(
-    # branchless OBJECT
-    # source/branchless.cpp
-# )
-
-# target_compile_features(branchless PUBLIC cxx_std_20)
-# target_link_options(branchless PRIVATE -fno-omit-frame-pointer -fsanitize=address)
-# target_compile_options(branchless PRIVATE -fno-omit-frame-pointer -fsanitize=address)
-
 # ---- Declare executable ----
 
-add_executable(branch_predicted source/branch_predicted.cpp)
-add_executable(benchmark::branch_predicted ALIAS branch_predicted)
+SET(targets branch_predicted branch_not_predicted branchless_predicted branchless_not_predicted)
 
-set_target_properties(
-    branch_predicted PROPERTIES
-    OUTPUT_NAME branch_predicted
-    EXPORT_NAME branch_predicted
-)
+foreach(t ${targets})
+    add_executable(${t} source/${t}.cpp)
+    add_executable(benchmark::${t} ALIAS ${t})
 
-target_compile_features(branch_predicted PRIVATE cxx_std_20)
-target_link_libraries(branch_predicted PRIVATE benchmark::benchmark)
-target_link_options(branch_predicted PRIVATE -fno-omit-frame-pointer -fsanitize=address)
-target_compile_options(branch_predicted PRIVATE -fno-omit-frame-pointer -fsanitize=address)
+    set_target_properties(
+        ${t} PROPERTIES
+        OUTPUT_NAME ${t}
+        EXPORT_NAME ${t}
+    )
+
+    target_compile_features(${t} PRIVATE cxx_std_20)
+    target_link_libraries(${t} PRIVATE benchmark::benchmark)
+    target_link_options(${t} PRIVATE -fno-omit-frame-pointer -fsanitize=address)
+    target_compile_options(${t} PRIVATE -fno-omit-frame-pointer -fsanitize=address)
 
 # ---- Setup binary location ----
-set_property(TARGET branch_predicted
-    PROPERTY RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
+    set_property(TARGET ${t}
+        PROPERTY RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
+
+endforeach(t)
+
 
 # ---- Create build directories ----
 include(cmake/create_dir.cmake)
