@@ -22,44 +22,37 @@ include(cmake/variables.cmake)
 
 # ---- Declare library ----
 
-add_library(
-    branchless OBJECT
-    source/branchless.cpp
-)
+# add_library(
+    # branchless OBJECT
+    # source/branchless.cpp
+# )
 
-target_compile_features(branchless PUBLIC cxx_std_20)
-target_link_options(branchless PRIVATE -fno-omit-frame-pointer -fsanitize=address)
-target_compile_options(branchless PRIVATE -fno-omit-frame-pointer -fsanitize=address)
+# target_compile_features(branchless PUBLIC cxx_std_20)
+# target_link_options(branchless PRIVATE -fno-omit-frame-pointer -fsanitize=address)
+# target_compile_options(branchless PRIVATE -fno-omit-frame-pointer -fsanitize=address)
 
 # ---- Declare executable ----
 
-add_executable(benchmark source/main.cpp)
-add_executable(benchmark::exe ALIAS benchmark)
+add_executable(branch_predicted source/branch_predicted.cpp)
+add_executable(benchmark::branch_predicted ALIAS branch_predicted)
 
 set_target_properties(
-    benchmark PROPERTIES
-    OUTPUT_NAME benchmark
-    EXPORT_NAME exe
+    branch_predicted PROPERTIES
+    OUTPUT_NAME branch_predicted
+    EXPORT_NAME branch_predicted
 )
 
-target_compile_features(benchmark PRIVATE cxx_std_20)
-target_link_libraries(benchmark PRIVATE branchless)
-target_link_libraries(benchmark PRIVATE benchmark::benchmark)
-target_link_options(benchmark PRIVATE -fno-omit-frame-pointer -fsanitize=address)
-target_compile_options(benchmark PRIVATE -fno-omit-frame-pointer -fsanitize=address)
+target_compile_features(branch_predicted PRIVATE cxx_std_20)
+target_link_libraries(branch_predicted PRIVATE benchmark::benchmark)
+target_link_options(branch_predicted PRIVATE -fno-omit-frame-pointer -fsanitize=address)
+target_compile_options(branch_predicted PRIVATE -fno-omit-frame-pointer -fsanitize=address)
 
 # ---- Setup binary location ----
-set_property(TARGET benchmark
+set_property(TARGET branch_predicted
     PROPERTY RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 
 # ---- Create build directories ----
 include(cmake/create_dir.cmake)
-
-# ---- Install rules ----
-
-if(NOT CMAKE_SKIP_INSTALL_RULES)
-  include(cmake/install-rules.cmake)
-endif()
 
 # ---- Developer mode ----
 

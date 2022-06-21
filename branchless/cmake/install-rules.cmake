@@ -2,12 +2,12 @@ include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
 
 # find_package(<package>) call for consumers to find this project
-set(package benchmark)
+set(package branch_predicted)
 
-install(
-    TARGETS benchmark
-    RUNTIME COMPONENT benchmark_Runtime
-)
+# install(
+    # TARGETS branch_predicted
+    # RUNTIME COMPONENT benchmark_Runtime
+# )
 
 write_basic_package_version_file(
     "${package}ConfigVersion.cmake"
@@ -29,7 +29,7 @@ install(
 
 # Export variables for the install script to use
 install(CODE "
-set(benchmark_NAME [[$<TARGET_FILE_NAME:benchmark>]])
+set(benchmark_NAME [[$<TARGET_FILE_NAME:branch_predicted>]])
 set(benchmark_INSTALL_CMAKEDIR [[${benchmark_INSTALL_CMAKEDIR}]])
 set(CMAKE_INSTALL_BINDIR [[${CMAKE_INSTALL_BINDIR}]])
 " COMPONENT benchmark_Development)
