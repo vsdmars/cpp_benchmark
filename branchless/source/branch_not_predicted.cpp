@@ -13,8 +13,7 @@ static void BM_branch_predicted(benchmark::State& state)
   for (size_t i = 0; i < N; ++i) {
     v1[i] = seed.getVal();
     v2[i] = seed.getVal();
-    // c1[i] = seed.getVal() & 0x1;
-    c1[i] = 0;
+    c1[i] = seed.getVal() & 0x1;
   }
 
   // pointer to continuous heap memory
