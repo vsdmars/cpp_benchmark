@@ -1,8 +1,5 @@
 cmake_minimum_required(VERSION 3.23)
 
-# setup create directories properties
-include(cmake/create_dir.cmake)
-
 include(cmake/prelude.cmake)
 
 project(
@@ -13,9 +10,10 @@ project(
     LANGUAGES CXX
 )
 
+# ---- Enable Google Benchmark ----
 find_package(benchmark REQUIRED) # benchmark::benchmark
 
-# enable unit test
+# ---- Enable unit test ----
 # https://stackoverflow.com/a/30264765
 enable_testing()
 
@@ -49,6 +47,13 @@ target_link_libraries(benchmark PRIVATE branchless)
 target_link_libraries(benchmark PRIVATE benchmark::benchmark)
 target_link_options(benchmark PRIVATE -fno-omit-frame-pointer -fsanitize=address)
 target_compile_options(benchmark PRIVATE -fno-omit-frame-pointer -fsanitize=address)
+
+# ---- Setup binary location ----
+set_property(TARGET benchmark
+    PROPERTY RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
+
+# ---- Create build directories ----
+include(cmake/create_dir.cmake)
 
 # ---- Install rules ----
 
